@@ -1,0 +1,51 @@
+@startuml
+title UML Diagram - Subject, ScoreDict, and SubjectRegistry
+
+' ==== External class (referenced but not detailed) ====
+class Person {
+}
+
+' ==== ScoreDict ====
+class ScoreDict {
+    - scores : Map<Person, Integer>
+    + setScore(person: Person, score: int) : void
+    + removePerson(person: Person) : void
+    + getScore(person: Person) : Optional<Integer>
+    + contains(person: Person) : boolean
+    + getAllScores() : Map<Person, Integer>
+}
+
+' ==== Subject (enum) ====
+enum Subject {
+    MATH
+    ENGLISH
+    SCIENCE
+    --
+    - scoreDict : ScoreDict
+    - students : Set<Person>
+    + enrollPerson(person: Person) : void
+    + unenrollPerson(person: Person) : void
+    + setScore(person: Person, score: int) : void
+    + getScore(person: Person) : int
+    + getStudents() : Set<Person>
+    + getScoreDict() : ScoreDict
+}
+
+' ==== SubjectRegistry (utility class) ====
+class SubjectRegistry {
+    - SubjectRegistry()
+    + getSubjectsOf(person: Person) : Set<Subject>
+    + getScoresOf(person: Person) : Map<Subject, Integer>
+    + getScoreDict(subject: Subject) : ScoreDict
+    + getViewOnlyScores(subject: Subject) : Map<Person, Integer>
+}
+
+' ==== Relationships ====
+SubjectRegistry ..> Subject : uses
+SubjectRegistry ..> ScoreDict : uses
+SubjectRegistry ..> Person : uses
+Subject "1" o-- "1" ScoreDict : has
+Subject "1" o-- "*" Person : enrolls
+ScoreDict "1" o-- "*" Person : maps score of
+
+@enduml
