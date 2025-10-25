@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javafx.collections.ObservableMap;
 import seedu.address.model.person.Person;
 
 /**
@@ -65,5 +66,9 @@ public final class SubjectRegistry {
      */
     public static Map<Person, Integer> getViewOnlyScores(Subject subject) {
         return subject.getScoreDict().getAllScores();
+    }
+
+    public static ObservableMap<Person, Integer> getObservableScore(Subject subject) {
+        return subject.getScoreDict().getObservableScores();
     }
 }

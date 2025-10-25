@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.subject.SubjectRegistry;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -44,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane allergies;
+    @FXML
+    private FlowPane subjects;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -64,5 +67,10 @@ public class PersonCard extends UiPart<Region> {
         person.getAllergyList().stream()
                 .sorted(Comparator.comparing(al -> al.toString()))
                 .forEach(al -> allergies.getChildren().add(new Label(al.toString())));
+        SubjectRegistry.getSubjectsOf(person).stream()
+                .sorted(Comparator.comparing(subject -> subject.toString()))
+                .forEach(subject ->
+                        subjects.getChildren().add(new Label(subject + "|"
+                                + SubjectRegistry.getScoresOf(person).get(subject))));
     }
 }
