@@ -1,7 +1,6 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,7 +27,7 @@ public class SampleDataUtil {
                 new Phone("87438807"),
                 new Email("alexyeoh@example.com"),
                 new AllergyList(
-                    List.of(new Allergy("Peanuts"), new Allergy("Milk"))
+                    Set.of(new Allergy("Peanuts"), new Allergy("Milk"))
                 ),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                     getTagSet("adhd")
@@ -39,7 +38,7 @@ public class SampleDataUtil {
                 new Phone("99272758"),
                 new Email("berniceyu@example.com"),
                 new AllergyList(
-                    List.of(new Allergy("Shellfish"))
+                    Set.of(new Allergy("Shellfish"))
                 ),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     getTagSet("adhd", "only child")
@@ -50,7 +49,7 @@ public class SampleDataUtil {
                 new Phone("93210283"),
                 new Email("charlotte@example.com"),
                 new AllergyList(
-                    List.of(new Allergy("Dust"))
+                    Set.of(new Allergy("Dust"))
                 ),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     getTagSet("vegetarian")
@@ -61,7 +60,7 @@ public class SampleDataUtil {
                 new Phone("91031282"),
                 new Email("lidavid@example.com"),
                 new AllergyList(
-                    List.of() // No known allergies
+                    Set.of() // No known allergies
                 ),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     getTagSet("diabetic")
@@ -72,7 +71,7 @@ public class SampleDataUtil {
                 new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new AllergyList(
-                    List.of(new Allergy("Eggs"), new Allergy("Soy"))
+                    Set.of(new Allergy("Eggs"), new Allergy("Soy"))
                 ),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                     getTagSet("deaf", "blind")
@@ -83,7 +82,7 @@ public class SampleDataUtil {
                 new Phone("92624417"),
                 new Email("royb@example.com"),
                 new AllergyList(
-                    List.of(new Allergy("Gluten"))
+                    Set.of(new Allergy("Gluten"))
                 ),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                     getTagSet("hyperhidrosis", "only child")

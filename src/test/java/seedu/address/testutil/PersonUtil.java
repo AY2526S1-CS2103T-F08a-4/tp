@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTPHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
@@ -59,7 +58,7 @@ public class PersonUtil {
         descriptor.getParentPhone().ifPresent(phone -> sb.append(PREFIX_PARENTPHONE).append(phone.value).append(" "));
         descriptor.getParentEmail().ifPresent(email -> sb.append(PREFIX_PARENTEMAIL).append(email.value).append(" "));
         descriptor.getAllergies().ifPresent(allergyList -> {
-            List<Allergy> allergies = allergyList.getAllergyList();
+            Set<Allergy> allergies = allergyList.getAllergyList();
             if (allergies.isEmpty()) {
                 sb.append(PREFIX_ALLERGY + " ");
             } else {

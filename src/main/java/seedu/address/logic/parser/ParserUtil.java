@@ -162,7 +162,7 @@ public class ParserUtil {
      */
     public static AllergyList parseAllergies(Collection<String> allergies) throws ParseException {
         requireNonNull(allergies);
-        final List<Allergy> allergyList = new ArrayList<>();
+        final Set<Allergy> allergyList = new HashSet<>();
         for (String allergyName : allergies) {
             allergyList.add(parseAllergy(allergyName));
         }

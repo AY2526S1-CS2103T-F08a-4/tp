@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Allergy;
@@ -41,7 +42,7 @@ public class PersonBuilder {
         parentName = new Name(DEFAULT_PARENT_NAME);
         parentPhone = new Phone(DEFAULT_PARENT_PHONE);
         parentEmail = new Email(DEFAULT_PARENT_EMAIL);
-        allergies = new AllergyList(List.of());
+        allergies = new AllergyList(Set.of());
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -95,9 +96,9 @@ public class PersonBuilder {
      * Sets the {@code allergies} of the {@code Person} that we are building.
      */
     public PersonBuilder withAllergies(String... allergyNames) {
-        List<Allergy> allergyList = List.of(allergyNames).stream()
+        Set<Allergy> allergyList = List.of(allergyNames).stream()
                 .map(Allergy::new)
-                .toList();
+                .collect(Collectors.toSet());
         this.allergies = new AllergyList(allergyList);
         return this;
     }

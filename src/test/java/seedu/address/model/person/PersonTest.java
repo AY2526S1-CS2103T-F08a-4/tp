@@ -12,7 +12,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -138,10 +139,10 @@ public class PersonTest {
 
         // ensure allergies actually changed
         assertFalse(originalAlice.getAllergies().equals(editedAlice.getAllergies()));
-        assertEquals(List.of("Peanuts", "Shellfish"),
+        assertEquals(Set.of("Peanuts", "Shellfish"),
                 editedAlice.getAllergies().getAllergyList().stream()
                         .map(Allergy::toString)
-                        .toList());
+                        .collect(Collectors.toSet()));
 
         // all other attributes should remain unchanged
         assertEquals(originalAlice.getChildName(), editedAlice.getChildName());

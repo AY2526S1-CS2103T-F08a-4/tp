@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Represents a child's allergies information.
@@ -15,24 +16,24 @@ public class AllergyList {
     public static final String MESSAGE_CONSTRAINTS =
             "Allergy list should not contain null or invalid entries.";
 
-    private final List<Allergy> allergyList;
+    private final Set<Allergy> allergyList;
 
     /**
      * Constructs an {@code Allergies} object.
      *
-     * @param allergyList A valid list of {@code Allergy} objects.
+     * @param allergyList A valid set of {@code Allergy} objects.
      */
-    public AllergyList(List<Allergy> allergyList) {
+    public AllergyList(Set<Allergy> allergyList) {
         requireNonNull(allergyList);
         requireAllNonNull(allergyList);
-        this.allergyList = List.copyOf(allergyList); // defensive copy, immutable
+        this.allergyList = Set.copyOf(allergyList); // defensive copy, immutable
     }
 
     /**
      * Returns an unmodifiable view of the allergy list.
      */
-    public List<Allergy> getAllergyList() {
-        return Collections.unmodifiableList(allergyList);
+    public Set<Allergy> getAllergyList() {
+        return Collections.unmodifiableSet(allergyList);
     }
 
     /**
@@ -56,14 +57,10 @@ public class AllergyList {
             return "No known allergies";
         }
 
-        StringBuilder builder = new StringBuilder();
-        for (Allergy allergy : allergyList) {
-            builder.append(allergy.toString()).append(", ");
-        }
-
-        // Remove trailing comma and space
-        builder.setLength(builder.length() - 2);
-        return builder.toString();
+        return allergyList.stream()
+                .map(Allergy::toString)
+                .sorted() // ensure deterministic order
+                .collect(Collectors.joining(", "));
     }
 
     @Override

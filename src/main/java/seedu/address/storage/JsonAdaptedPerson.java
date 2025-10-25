@@ -126,7 +126,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         // Convert allergy strings into Allergy objects
-        final List<Allergy> modelAllergiesList = new ArrayList<>();
+        final Set<Allergy> modelAllergiesList = new HashSet<>();
         for (String allergyName : allergies) {
             if (!Allergy.isValidAllergy(allergyName)) {
                 throw new IllegalValueException(Allergy.MESSAGE_CONSTRAINTS);
