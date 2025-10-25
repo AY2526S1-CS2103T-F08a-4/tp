@@ -1,6 +1,6 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
+skinparam arrowThickness 1.2
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
@@ -20,6 +20,7 @@ Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class JsonAdaptedScoreEntry
 }
 
 }
@@ -39,5 +40,6 @@ JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableAddressBook --> "*" JsonAdaptedScoreEntry
 
 @enduml
