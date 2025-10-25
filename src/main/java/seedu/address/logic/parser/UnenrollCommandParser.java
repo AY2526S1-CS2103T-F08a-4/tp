@@ -34,18 +34,14 @@ public class UnenrollCommandParser implements Parser<UnenrollCommand> {
         boolean unenrollAll = false;
         List<Subject> subjects;
 
-        try {
-            String preamble = argMultimap.getPreamble();
-            if (ParserUtil.checkIsAll(preamble)) {
-                unenrollAll = true;
-                indices = new Index[0];
-            } else {
-                indices = ParserUtil.parseIndexArray(preamble);
-            }
-            subjects = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_SUBJECT));
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnenrollCommand.MESSAGE_USAGE), pe);
+        String preamble = argMultimap.getPreamble();
+        if (ParserUtil.checkIsAll(preamble)) {
+            unenrollAll = true;
+            indices = new Index[0];
+        } else {
+            indices = ParserUtil.parseIndexArray(preamble);
         }
+        subjects = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_SUBJECT));
 
         return new UnenrollCommand(indices, unenrollAll, subjects);
     }

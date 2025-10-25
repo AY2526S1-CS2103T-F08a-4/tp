@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_SCORE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
@@ -88,15 +89,13 @@ public class SetScoreCommandParserTest {
     @Test
     public void parseInvalidSubject() {
         String userInput = "1 " + INVALID_SUBJECT_DESC + VALID_SCORE_DESC;
-        assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetScoreCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, Subject.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parseInvalidScore() {
         String userInput = "1 " + VALID_SUBJECT_DESC + INVALID_SCORE_DESC;
-        assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetScoreCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_SCORE);
     }
 
     @Test

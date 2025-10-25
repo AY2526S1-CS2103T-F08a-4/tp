@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_2_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_DESC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.ArrayList;
@@ -139,12 +140,10 @@ public class UnenrollCommandParserTest {
                 UnenrollCommand.MESSAGE_USAGE));
 
         // invalid subject
-        assertParseFailure(parser, "1 " + INVALID_SUBJECT_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                UnenrollCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "1 " + INVALID_SUBJECT_DESC, Subject.MESSAGE_CONSTRAINTS);
 
         // invalid indexes
-        assertParseFailure(parser, "asas " + VALID_SUBJECT_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                UnenrollCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "asas " + VALID_SUBJECT_DESC, MESSAGE_INVALID_INDEX);
 
         // missing preamble
         assertParseFailure(parser, VALID_SUBJECT_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,

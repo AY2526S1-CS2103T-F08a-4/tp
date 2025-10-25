@@ -36,20 +36,15 @@ public class SetScoreCommandParser implements Parser<SetScoreCommand> {
         int score;
         boolean setAll = false;
 
-        try {
-            String preamble = argMultimap.getPreamble();
-            if (ParserUtil.checkIsAll(preamble)) {
-                setAll = true;
-                indices = new Index[0];
-            } else {
-                indices = ParserUtil.parseIndexArray(preamble);
-            }
-            subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
-            score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SetScoreCommand.MESSAGE_USAGE), pe);
+        String preamble = argMultimap.getPreamble();
+        if (ParserUtil.checkIsAll(preamble)) {
+            setAll = true;
+            indices = new Index[0];
+        } else {
+            indices = ParserUtil.parseIndexArray(preamble);
         }
+        subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
+        score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get());
 
         return new SetScoreCommand(indices, setAll, subject, score);
     }

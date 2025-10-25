@@ -2,6 +2,7 @@ package seedu.address.model.subject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -14,6 +15,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.MapChangeListener;
+import javafx.collections.ObservableMap;
 import seedu.address.model.person.Person;
 
 public class SubjectRegistryTest {
@@ -253,5 +256,43 @@ public class SubjectRegistryTest {
 
         Map<Subject, Integer> carlScores = SubjectRegistry.getScoresOf(CARL);
         assertEquals(90, carlScores.get(Subject.SCIENCE));
+    }
+
+
+    @Test
+    public void getScoreDict_returnsSameInstance() {
+        ScoreDict original = Subject.MATH.getScoreDict();
+
+        // Call your static helper
+        ScoreDict returned = SubjectRegistry.getScoreDict(Subject.MATH);
+
+        assertSame(original, returned, "getScoreDict() should return the exact same ScoreDict instance");
+    }
+
+    @Test
+    public void getObservableScore_returnsLiveObservableMap() {
+        ObservableMap<Person, Integer> observableScores = SubjectRegistry.getObservableScore(Subject.MATH);
+
+        assertNotNull(observableScores);
+        assertTrue(observableScores.isEmpty(), "Initial score map should be empty");
+
+        ScoreDict dict = Subject.MATH.getScoreDict();
+
+        // Listen for map changes
+        final boolean[] changeTriggered = { false };
+        observableScores.addListener((MapChangeListener<Person, Integer>) change -> {
+            changeTriggered[0] = true;
+        });
+
+        // Modify through ScoreDict
+        dict.setScore(ALICE, 95);
+
+        // Check observable updated
+        assertTrue(observableScores.containsKey(ALICE));
+        assertEquals(95, observableScores.get(ALICE));
+        assertTrue(changeTriggered[0], "Listener should be triggered on score change");
+    }
+
+    private void assertNotNull(ObservableMap<Person, Integer> observableScores) {
     }
 }

@@ -20,14 +20,16 @@ import seedu.address.model.subject.Subject;
 public class UnenrollCommand extends Command {
     public static final String COMMAND_WORD = "unenroll";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unenrolls all children at the specified indexes "
-            + "into the listed subjects; or enrolls all children currently listed if the 'all' keyword is used\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unenrolls all children at the specified indexes"
+            + "into the listed subjects;\n or unenrolls all children currently listed if the 'all' keyword is used\n"
             + "Parameters: INDEXES (must be positive integers) or 'ALL', s/SUBJECT...\n"
-            + "Example: " + COMMAND_WORD + " 1 2 3 s/math "
-            + "or: " + COMMAND_WORD + " all s/math s/science";
+            + "Example: " + COMMAND_WORD + " 1 2 3 s/math\n"
+            + "or: " + COMMAND_WORD + " all s/math s/science\n";
 
     public static final String MESSAGE_UNENROLL_PERSON_SUCCESS = "Unenrolled Child: %1$s in Subject: %2$s\n";
+    public static final String MESSAGE_SKIPPED_PERSON = "Child: %1$s not enrolled in Subject %2$s, skipping...\n";
     public static final String MESSAGE_NO_PERSON_UNENROLLED = "All selected children are already unenrolled";
+    public static final String MESSAGE_DONE = "Finished command execution";
 
     private final Index[] indexes;
     private final boolean unenrollAll;
@@ -54,6 +56,7 @@ public class UnenrollCommand extends Command {
         StringBuilder sb = new StringBuilder();
 
         List<Person> personsToProcess;
+        int unenrollCount = 0;
 
         if (unenrollAll) {
             personsToProcess = lastShownList;
@@ -72,16 +75,21 @@ public class UnenrollCommand extends Command {
         for (Person person : personsToProcess) {
             for (Subject subject : subjectList) {
                 if (subject.getStudents().contains(person)) {
+                    unenrollCount++;
                     subject.unenrollPerson(person);
                     sb.append(String.format(MESSAGE_UNENROLL_PERSON_SUCCESS,
                             Messages.formatShort(person), subject));
+                } else {
+                    sb.append(String.format(MESSAGE_SKIPPED_PERSON, Messages.formatShort(person), subject));
                 }
             }
         }
 
+        sb.append(MESSAGE_DONE);
+
         String unenrolledPersonsResult = sb.toString();
 
-        return new CommandResult(unenrolledPersonsResult.isEmpty() ? MESSAGE_NO_PERSON_UNENROLLED
+        return new CommandResult(unenrollCount == 0 ? MESSAGE_NO_PERSON_UNENROLLED
                 : unenrolledPersonsResult);
     }
 

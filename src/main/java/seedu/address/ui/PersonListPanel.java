@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -9,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.subject.Subject;
 
 /**
  * Panel containing the list of persons.
@@ -27,6 +29,12 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        for (Subject s : Subject.values()) {
+            s.getScoreDict().getObservableScores().addListener((MapChangeListener<Person, Integer>) change -> {
+                personListView.refresh();
+            });
+        }
     }
 
     /**

@@ -1,10 +1,11 @@
 package seedu.address.model.subject;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import seedu.address.model.person.Person;
 
 /**
@@ -12,7 +13,7 @@ import seedu.address.model.person.Person;
  * Provides controlled access to add, remove, and query scores.
  */
 public class ScoreDict {
-    private final Map<Person, Integer> scores = new HashMap<>();
+    private final ObservableMap<Person, Integer> scores = FXCollections.observableHashMap();
 
     /**
      * Adds or updates the score of a person.
@@ -62,5 +63,9 @@ public class ScoreDict {
      */
     public Map<Person, Integer> getAllScores() {
         return Collections.unmodifiableMap(scores);
+    }
+
+    public ObservableMap<Person, Integer> getObservableScores() {
+        return scores;
     }
 }

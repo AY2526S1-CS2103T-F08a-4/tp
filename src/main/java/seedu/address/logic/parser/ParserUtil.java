@@ -27,6 +27,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_SCORE = "Score must be a number between 0 to 100!";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -222,12 +223,12 @@ public class ParserUtil {
         try {
             int score = Integer.parseInt(scoreString);
             if (score < 0 || score > 100) {
-                throw new ParseException("Score must be between 0 to 100!");
+                throw new ParseException(MESSAGE_INVALID_SCORE);
             }
 
             return score;
         } catch (NumberFormatException | NullPointerException e) {
-            throw new ParseException("Score must be numeric!");
+            throw new ParseException(MESSAGE_INVALID_SCORE);
         }
     }
 }

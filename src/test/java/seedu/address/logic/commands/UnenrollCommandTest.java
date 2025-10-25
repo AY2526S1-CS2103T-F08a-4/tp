@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.UnenrollCommand.MESSAGE_DONE;
 import static seedu.address.logic.commands.UnenrollCommand.MESSAGE_NO_PERSON_UNENROLLED;
+import static seedu.address.logic.commands.UnenrollCommand.MESSAGE_SKIPPED_PERSON;
 import static seedu.address.logic.commands.UnenrollCommand.MESSAGE_UNENROLL_PERSON_SUCCESS;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -57,8 +59,11 @@ public class UnenrollCommandTest {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
 
-        String expectedMessage = String.format(MESSAGE_UNENROLL_PERSON_SUCCESS,
+        String expectedMessage = "";
+        expectedMessage += String.format(MESSAGE_UNENROLL_PERSON_SUCCESS,
                 Messages.formatShort(person), Subject.MATH);
+        expectedMessage += String.format(MESSAGE_DONE);
+
         Model expectedModel = model;
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -85,6 +90,7 @@ public class UnenrollCommandTest {
             expectedMessageBuilder.append(String.format(
                     MESSAGE_UNENROLL_PERSON_SUCCESS, Messages.formatShort(person), Subject.MATH));
         }
+        expectedMessageBuilder.append(MESSAGE_DONE);
 
         String expectedMessage = expectedMessageBuilder.toString();
         Model expectedModel = model;
@@ -120,6 +126,16 @@ public class UnenrollCommandTest {
                 MESSAGE_UNENROLL_PERSON_SUCCESS, Messages.formatShort(ALICE), Subject.MATH));
         expectedMessageBuilder.append(String.format(
                 MESSAGE_UNENROLL_PERSON_SUCCESS, Messages.formatShort(BENSON), Subject.MATH));
+        for (Person p : model.getFilteredPersonList()) {
+            if (p == ALICE || p == BENSON) {
+                continue;
+            }
+
+            expectedMessageBuilder.append(String.format(MESSAGE_SKIPPED_PERSON,
+                    Messages.formatShort(p), Subject.MATH));
+        }
+
+        expectedMessageBuilder.append(MESSAGE_DONE);
 
         String expectedMessage = expectedMessageBuilder.toString();
         Model expectedModel = model;
@@ -150,6 +166,8 @@ public class UnenrollCommandTest {
                 Messages.formatShort(person), Subject.MATH);
         expectedMessage += String.format(MESSAGE_UNENROLL_PERSON_SUCCESS,
                 Messages.formatShort(person), Subject.SCIENCE);
+        expectedMessage += MESSAGE_DONE;
+
         Model expectedModel = model;
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -178,6 +196,10 @@ public class UnenrollCommandTest {
                 MESSAGE_UNENROLL_PERSON_SUCCESS, Messages.formatShort(ALICE), Subject.SCIENCE));
         expectedMessageBuilder.append(String.format(
                 MESSAGE_UNENROLL_PERSON_SUCCESS, Messages.formatShort(BENSON), Subject.MATH));
+        expectedMessageBuilder.append(String.format(
+                MESSAGE_SKIPPED_PERSON, Messages.formatShort(BENSON), Subject.SCIENCE));
+
+        expectedMessageBuilder.append(MESSAGE_DONE);
 
         String expectedMessage = expectedMessageBuilder.toString();
         Model expectedModel = model;
@@ -214,6 +236,21 @@ public class UnenrollCommandTest {
                 MESSAGE_UNENROLL_PERSON_SUCCESS, Messages.formatShort(ALICE), Subject.SCIENCE));
         expectedMessageBuilder.append(String.format(
                 MESSAGE_UNENROLL_PERSON_SUCCESS, Messages.formatShort(BENSON), Subject.MATH));
+        expectedMessageBuilder.append(String.format(
+                MESSAGE_SKIPPED_PERSON, Messages.formatShort(BENSON), Subject.SCIENCE));
+
+        for (Person p : model.getFilteredPersonList()) {
+            if (p == ALICE || p == BENSON) {
+                continue;
+            }
+
+            expectedMessageBuilder.append(String.format(
+                    MESSAGE_SKIPPED_PERSON, Messages.formatShort(p), Subject.MATH));
+            expectedMessageBuilder.append(String.format(
+                    MESSAGE_SKIPPED_PERSON, Messages.formatShort(p), Subject.SCIENCE));
+        }
+
+        expectedMessageBuilder.append(MESSAGE_DONE);
 
         String expectedMessage = expectedMessageBuilder.toString();
         Model expectedModel = model;

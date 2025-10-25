@@ -239,4 +239,5 @@ public class ScoreDictTest {
         assertTrue(scoreDict.contains(ALICE));
         assertEquals(95, scoreDict.getScore(ALICE).orElse(-1));
     }
+
 }

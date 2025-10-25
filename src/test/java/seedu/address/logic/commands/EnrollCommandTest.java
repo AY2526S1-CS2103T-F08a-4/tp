@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.EnrollCommand.MESSAGE_DONE;
 import static seedu.address.logic.commands.EnrollCommand.MESSAGE_ENROLL_PERSON_SUCCESS;
+import static seedu.address.logic.commands.EnrollCommand.MESSAGE_SKIPPED_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -58,6 +60,7 @@ public class EnrollCommandTest {
 
         String expectedMessage = String.format(MESSAGE_ENROLL_PERSON_SUCCESS,
                 Messages.formatShort(person), Subject.MATH);
+        expectedMessage += MESSAGE_DONE;
         Model expectedModel = model;
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -85,6 +88,7 @@ public class EnrollCommandTest {
             expectedMessageBuilder.append(String.format(
                     MESSAGE_ENROLL_PERSON_SUCCESS, Messages.formatShort(person), Subject.MATH));
         }
+        expectedMessageBuilder.append(MESSAGE_DONE);
 
         String expectedMessage = expectedMessageBuilder.toString();
         Model expectedModel = model;
@@ -121,6 +125,7 @@ public class EnrollCommandTest {
             expectedMessageBuilder.append(String.format(
                     MESSAGE_ENROLL_PERSON_SUCCESS, Messages.formatShort(person), Subject.MATH));
         }
+        expectedMessageBuilder.append(MESSAGE_DONE);
 
         String expectedMessage = expectedMessageBuilder.toString();
         Model expectedModel = model;
@@ -154,6 +159,8 @@ public class EnrollCommandTest {
                 Messages.formatShort(person), Subject.SCIENCE);
         Model expectedModel = model;
 
+        expectedMessage += MESSAGE_DONE;
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertTrue(Subject.MATH.getStudents().contains(person));
         assertTrue(Subject.SCIENCE.getStudents().contains(person));
@@ -184,6 +191,8 @@ public class EnrollCommandTest {
             expectedMessageBuilder.append(String.format(
                     MESSAGE_ENROLL_PERSON_SUCCESS, Messages.formatShort(person), Subject.SCIENCE));
         }
+
+        expectedMessageBuilder.append(MESSAGE_DONE);
 
         String expectedMessage = expectedMessageBuilder.toString();
         Model expectedModel = model;
@@ -226,6 +235,8 @@ public class EnrollCommandTest {
                     MESSAGE_ENROLL_PERSON_SUCCESS, Messages.formatShort(person), Subject.SCIENCE));
         }
 
+        expectedMessageBuilder.append(MESSAGE_DONE);
+
         String expectedMessage = expectedMessageBuilder.toString();
         Model expectedModel = model;
 
@@ -264,8 +275,13 @@ public class EnrollCommandTest {
 
         EnrollCommand command = new EnrollCommand(indexes, false, subjectList);
 
-        String expectedMessage = String.format(MESSAGE_ENROLL_PERSON_SUCCESS,
+        String expectedMessage = "";
+        expectedMessage += String.format(MESSAGE_SKIPPED_PERSON,
+                Messages.formatShort(ALICE), Subject.SCIENCE);
+        expectedMessage += String.format(MESSAGE_ENROLL_PERSON_SUCCESS,
                 Messages.formatShort(BENSON), Subject.SCIENCE);
+        expectedMessage += MESSAGE_DONE;
+
         assertCommandSuccess(command, model, expectedMessage, model);
         assertEquals(2, Subject.MATH.getStudents().size());
         assertEquals(2, Subject.SCIENCE.getStudents().size());

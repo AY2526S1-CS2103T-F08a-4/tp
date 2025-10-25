@@ -20,15 +20,16 @@ import seedu.address.model.subject.Subject;
 public class SetScoreCommand extends Command {
     public static final String COMMAND_WORD = "setscore";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Set score of children at the specified index. \n"
-            + "Can only specify one grade and one subject per command. Multiple children can be selected by"
-            + "using a space-separated list of indexes or the ALL keyword. \n"
-            + "Parameters: INDEXES (must be positive integers) or 'ALL', s/SUBJECT g/SCORE\n"
-            + "Example: " + COMMAND_WORD + " 1 2 3 s/math g/100 "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Set score of children at the specified index.\n"
+            + "Can only specify one grade and one subject per command. Multiple children can be selected by\n"
+            + "using a space-separated list of indexes or the ALL keyword.\n"
+            + "Parameters: INDEXES (must be positive integers) or 'ALL', s/SUBJECT g/score\n"
+            + "Example: " + COMMAND_WORD + " 1 2 3 s/math g/100\n"
             + "or: " + COMMAND_WORD + " all s/math g/85";
 
     public static final String MESSAGE_SET_SCORE_SUCCESS = "Grade of %1$s in Subject: %2$s set to %3$s\n";
-    public static final String MESSAGE_SKIPPED_STUDENT = "%1$s not enrolled in Subject: %2$s, skipping...";
+    public static final String MESSAGE_SKIPPED_STUDENT = "%1$s not enrolled in Subject: %2$s, skipping...\n";
+    public static final String MESSAGE_DONE = "Finished command execution";
 
     private final Index[] indexes;
     private final boolean setAll;
@@ -81,6 +82,8 @@ public class SetScoreCommand extends Command {
                 sb.append(String.format(MESSAGE_SET_SCORE_SUCCESS, Messages.formatShort(person), subject, score));
             }
         }
+
+        sb.append(MESSAGE_DONE);
 
         String setScoreResult = sb.toString();
 
