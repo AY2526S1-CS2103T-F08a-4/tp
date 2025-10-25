@@ -298,8 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | C1 | `* * *`  | Contact Management                | kindergarten teacher | view a student's parents' contact details                     | quickly contact them during emergencies                          | 
 | C2 | `* * *`  | Contact Management                | kindergarten admin   | store and retrieve parents' phone numbers and addresses       | send out updates and notices efficiently                         |
 | C3 | `* * *`  | Contact Management                | kindergarten teacher | search for a student by name                                  | access their profile quickly                                     | 
-| C4 | `* * *`  | Contact Management                | kindergarten admin   | add multiple emergency contacts for each student              | always have a fallback if the primary guardian is unavailable    |
-| C5 | `* *`    | Contact Management                | kindergarten admin   | see the name of the primary guardian                          | know who to contact first                                        |
+| C4 | `* *`    | Contact Management                | kindergarten admin   | see the name of the primary guardian                          | know who to contact first                                        |
 | C6 | `* *`    | Contact Management                | kindergarten teacher | update a parent's phone number                                | ensure the system always reflects the latest contact information |
 | C7 | `*`      | Contact Management                | kindergarten teacher | quickly retrieve parent contact info from my phone            | call them even when I am outside the office                      |
 | P1 | `* * *`  | Child Profiling                   | kindergarten teacher | record important facts about each student                     | tailor care and instructions to their needs                      |
@@ -353,14 +352,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: Delete a child**
+**Use case: Delete a child record**
 
 **MSS**
 
 1.  User requests to list children's details
 2.  ParentConnect shows a list of children
-3.  User requests to delete a specific child in the list
-4.  ParentConnect deletes the child
+3.  User requests to delete a specific child record in the list
+4.  ParentConnect deletes the child record
 
     Use case ends.
 
@@ -410,6 +409,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends. 
 
+**Use case: Find a child record**
+
+**MSS**
+
+1.  User enters search command with one or more details.
+2.  ParentConnect validates the input details.
+3.  ParentConnect displays a list of child records based on search details.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The input format is invalid.
+
+    * 2a1. ParentConnect shows an error message.
+
+      Use case ends.
+
+* 2b. The input is blank.
+
+    * 2b1. ParentConnect shows an error message.
+
+      Use case ends.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -455,22 +479,35 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a child record
 
-1. Deleting a person while all persons are being shown
+1. Deleting a child record while all child records are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all child records using the `list` command. Multiple child records in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First child record is deleted from the list. Details of the deleted child record shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No child record is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Editing a child record
+
+1. Editing a child record while all child records are being shown
+
+    1. Prerequisites: List all child records using the `list` command. Multiple child records in the list.
+
+    1. Test case: `edit 1 p/12345678 a/123 Road`<br>
+       Expected: First child record's phone number and address are updated. Details of the updated record are shown in the status message.
+
+    1. Test case: `edit 0`<br>
+       Expected: No record is updated. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Saving data
 

@@ -20,6 +20,8 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_EMPTY_PARAMETER =
                 "A value must be provided after each included prefix";
+    public static final String MESSAGE_INVALID_PREFIX =
+                "Invalid prefixes included: %1$s\n%2$s";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_PARAMETER;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILDNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
@@ -26,6 +27,14 @@ public class FindCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        assertParseFailure(
+                parser,
+                " a/Bukit Timah p/12345678",
+                String.format(MESSAGE_INVALID_PREFIX, "a/, p/", FindCommand.MESSAGE_USAGE));
     }
 
     @Test

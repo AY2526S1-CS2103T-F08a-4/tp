@@ -8,6 +8,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -229,5 +232,31 @@ public class ParserUtil {
         } catch (NumberFormatException | NullPointerException e) {
             throw new ParseException("Score must be numeric!");
         }
+    }
+
+    /**
+     * Detects and returns any invalid prefixes found in the given {@code args} string.
+     * A prefix is considered invalid if it matches the pattern {@code [a-zA-Z]+/}
+     * but is not present in the specified list of {@code validPrefixes}.
+     *
+     * @param args the full command arguments string to check
+     * @param validPrefixes the list of prefixes that are considered valid
+     * @return a comma-separated string of invalid prefixes found, or an empty string if none exist
+     */
+    public static String detectInvalidPrefixes(String args, Prefix... validPrefixes) {
+        Set<String> valid = Arrays.stream(validPrefixes)
+                .map(Prefix::getPrefix)
+                .collect(Collectors.toSet());
+
+        Matcher m = Pattern.compile("([a-zA-Z]+/)").matcher(args);
+        List<String> invalids = new ArrayList<>();
+        while (m.find()) {
+            String prefix = m.group(1);
+            if (!valid.contains(prefix)) {
+                invalids.add(prefix);
+            }
+        }
+
+        return String.join(", ", invalids);
     }
 }
