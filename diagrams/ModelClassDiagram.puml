@@ -21,6 +21,8 @@ Class ParentName
 Class ParentPhoneNumber
 Class Allergy
 Class Tag
+Class ScoreDict
+Class Subject
 
 Class I #FFFFFF
 }
@@ -46,6 +48,8 @@ Person *--> ParentEmail
 Person *--> Address
 Person *--> "*" Tag
 Person *--> "*" Allergy
+ScoreDict *--> "*" Person
+Subject --> "1" ScoreDict
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
