@@ -49,12 +49,23 @@ public class Messages {
                 .append("; Address: ")
                 .append(person.getAddress())
                 .append("; Allergies: ");
-        person.getAllergyList().forEach(al-> {
-            builder.append("[").append(al).append("]");
-        });
+        builder.append(
+                person.getAllergyList().isEmpty()
+                        ? "[None]"
+                        : person.getAllergyList().stream()
+                        .map(al -> "[" + al + "]")
+                        .collect(Collectors.joining())
+        );
+
         builder.append("; Tags: ");
-        person.getTags().forEach(builder::append);
-        builder.append("\n");
+        builder.append(
+                person.getTags().isEmpty()
+                        ? "[No Tags]"
+                        : person.getTags().stream()
+                        .map(tag -> "[" + tag + "]")
+                        .collect(Collectors.joining())
+        );
+
         return builder.toString();
     }
 
