@@ -62,7 +62,8 @@
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
-        "deleting-a-person": "Deleting a person",
+        "deleting-a-child-record": "Deleting a child record",
+        "editing-a-child-record": "Editing a child record",
         "saving-data": "Saving data"
       },
       "headingKeywords": {}
