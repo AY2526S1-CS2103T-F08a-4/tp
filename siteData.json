@@ -38,6 +38,7 @@
     },
     {
       "src": "DeveloperGuide.md",
+      "title": "Developer Guide",
       "headings": {
         "parent-connect-developer-guide": "Parent Connect Developer Guide",
         "acknowledgements": "Acknowledgements",
