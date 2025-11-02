@@ -124,10 +124,10 @@
         "saving-the-data": "Saving the data",
         "editing-the-data-file": "Editing the data file",
         "archiving-data-files-coming-in-v2-0": "Archiving data files [coming in v2.0]",
+        "data-constraints-advanced": "Data constraints (advanced)",
         "faq": "FAQ",
         "known-issues": "Known issues",
-        "command-summary": "Command summary",
-        "data-constraints-advanced": "Data constraints (advanced)"
+        "command-summary": "Command summary"
       },
       "headingKeywords": {}
     },
