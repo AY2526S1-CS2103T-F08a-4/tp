@@ -38,6 +38,7 @@
     },
     {
       "src": "DeveloperGuide.md",
+      "title": "Developer Guide",
       "headings": {
         "parent-connect-developer-guide": "Parent Connect Developer Guide",
         "acknowledgements": "Acknowledgements",
@@ -61,8 +62,13 @@
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
-        "deleting-a-child-record": "Deleting a child record",
+        "finding-a-child-record": "Finding a child record",
+        "adding-a-child-record": "Adding a child record",
+        "deleting-child-record-s": "Deleting child record(s)",
         "editing-a-child-record": "Editing a child record",
+        "enrolling-a-child-into-a-subject": "Enrolling a child into a subject",
+        "setting-the-score-of-a-child-for-a-subject": "Setting the score of a child for a subject",
+        "unenrolling-a-child-from-a-subject": "Unenrolling a child from a subject",
         "saving-data": "Saving data"
       },
       "headingKeywords": {}
