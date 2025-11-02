@@ -1,6 +1,7 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
+skinparam ArrowFontSize 12
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
@@ -24,6 +25,9 @@ Class Tag
 Class ScoreDict
 Class Subject
 
+class _LeftSpacer #white
+
+
 Class I #FFFFFF
 }
 
@@ -40,24 +44,18 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+
 Person *--> ChildName
 Person *--> ParentName
-Person *--> ParentPhoneNumber
-Person *--> ParentEmail
-Person *--> Address
+Person *-right-> ParentPhoneNumber
+Person *-left-> ParentEmail
 Person *--> "*" Tag
 Person *--> "*" Allergy
+Person *--> Address
 ScoreDict *--> "*" Person
 Subject --> "1" ScoreDict
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+ModelManager --> "~*" Person
+UniquePersonList --> "~*" Person
 
-ChildName -[hidden]right-> ParentName
-ParentName -[hidden]right-> ParentPhoneNumber
-ParentPhoneNumber -[hidden]right-> Address
-Address -[hidden]right-> ParentEmail
-
-ModelManager --> "~* filtered" Person
 @enduml
