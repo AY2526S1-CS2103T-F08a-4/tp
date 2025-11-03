@@ -98,8 +98,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedPersonString = NAME_DESC_BOB + NAME_DESC_BOB_PARENT + PHONE_DESC_BOB_PARENT + EMAIL_DESC_BOB_PARENT
-                + ADDRESS_DESC_BOB + TAG_DESC_SINGLEPARENT;
+        String validExpectedPersonString = NAME_DESC_BOB + NAME_DESC_BOB_PARENT + PHONE_DESC_BOB_PARENT
+                + EMAIL_DESC_BOB_PARENT + ADDRESS_DESC_BOB + TAG_DESC_SINGLEPARENT;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
