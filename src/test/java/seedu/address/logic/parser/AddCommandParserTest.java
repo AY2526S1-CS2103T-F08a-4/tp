@@ -98,7 +98,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB_PARENT + EMAIL_DESC_BOB_PARENT
+        String validExpectedPersonString = NAME_DESC_BOB + NAME_DESC_BOB_PARENT + PHONE_DESC_BOB_PARENT + EMAIL_DESC_BOB_PARENT
                 + ADDRESS_DESC_BOB + TAG_DESC_SINGLEPARENT;
 
         // multiple names
@@ -123,8 +123,7 @@ public class AddCommandParserTest {
                         + PHONE_DESC_AMY_PARENT
                         + EMAIL_DESC_AMY_PARENT
                         + NAME_DESC_AMY
-                        + ADDRESS_DESC_AMY
-                        + validExpectedPersonString,
+                        + ADDRESS_DESC_AMY,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CHILDNAME, PREFIX_ADDRESS, PREFIX_PARENTEMAIL,
                         PREFIX_PARENTPHONE));
 
