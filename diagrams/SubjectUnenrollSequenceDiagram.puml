@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":UnenrollCommand" as UnenrollCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Subject" as Subject MODEL_COLOR
+participant ":ScoreDict" as ScoreDict MODEL_COLOR
+participant "p:Person" as Person MODEL_COLOR
+end box
+
+' Simple flow: a command invokes unenrollment on a Subject
+UnenrollCommand -> Subject : unenrollPerson(p)
+activate Subject
+
+Subject -> Subject : students.remove(p)
+
+Subject -> ScoreDict : removePerson(p)
+activate ScoreDict
+ScoreDict -> ScoreDict : scores.remove(p)
+ScoreDict --> Subject
+deactivate ScoreDict
+
+Subject --> UnenrollCommand : p
+deactivate Subject
+
+@enduml
