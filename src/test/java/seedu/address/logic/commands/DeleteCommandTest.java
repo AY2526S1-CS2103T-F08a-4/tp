@@ -111,7 +111,7 @@ public class DeleteCommandTest {
         assertEquals(expected, deleteCommand.toString());
     }
 // @@author uylulu-reused
-// Test was added with Github Copilot to ensure that a bug in PE-dry run was fixed. 
+// Test was added with Github Copilot to ensure that a bug in PE-dry run was fixed.
     @Test
     public void execute_deleteAlsoUnenrollsFromSubjects() {
         // Reset subjects to avoid interference from other tests
