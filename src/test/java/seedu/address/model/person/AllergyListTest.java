@@ -12,7 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
-
+// @@author uylulu-reused
+// TESTS WRITTEN WITH THE HELP OF COPILOT WITH MINOR MODIFICATIONS
 public class AllergyListTest {
 
     private static final Allergy PEANUTS = new Allergy("Peanuts");
@@ -134,3 +135,4 @@ public class AllergyListTest {
         assertNotEquals(allergies1.hashCode(), allergies2.hashCode());
     }
 }
+// @@author

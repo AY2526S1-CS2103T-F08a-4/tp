@@ -132,6 +132,8 @@ public class PersonTest {
         assertEquals(expected, ALICE.toString());
     }
 
+    //@@author uylulu-reused
+    //This test was written with the help of copilot to test for a bug we found in PE-dry run.
     @Test
     public void editAllergies_updatesCorrectly() {
         // start with ALICE having a default allergy list
@@ -157,4 +159,5 @@ public class PersonTest {
         assertEquals(originalAlice.getAddress(), editedAlice.getAddress());
         assertEquals(originalAlice.getTags(), editedAlice.getTags());
     }
+    //@@author
 }

@@ -110,7 +110,8 @@ public class DeleteCommandTest {
         String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteCommand.toString());
     }
-
+// @@author uylulu-reused
+// Test was added with Github Copilot to ensure that a bug in PE-dry run was fixed. 
     @Test
     public void execute_deleteAlsoUnenrollsFromSubjects() {
         // Reset subjects to avoid interference from other tests
@@ -147,4 +148,5 @@ public class DeleteCommandTest {
 
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
+// @@author
 }
