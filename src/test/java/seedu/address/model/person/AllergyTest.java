@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-// @@author uylulu-reused
-// TESTS WRITTEN WITH THE HELP OF COPILOT WITH MINOR MODIFICATIONS
+    // @@author uylulu-reused
+    // TESTS WRITTEN WITH THE HELP OF COPILOT WITH MINOR MODIFICATIONS
 public class AllergyTest {
 
     // Valid examples
@@ -40,7 +40,7 @@ public class AllergyTest {
         assertFalse(Allergy.isValidAllergy(INVALID_ALLERGY_SYMBOLS));
         assertFalse(Allergy.isValidAllergy(INVALID_ALLERGY_STARTS_WITH_SPACE));
     }
-// @@author
+    // @@author
 
     // --- Length boundary tests ---
 
@@ -71,8 +71,8 @@ public class AllergyTest {
     }
 
     // --- Constructor tests ---
-// @@author uylulu-reused
-// TESTS WRITTEN WITH THE HELP OF COPILOT WITH MINOR MODIFICATIONS
+    // @@author uylulu-reused
+    // TESTS WRITTEN WITH THE HELP OF COPILOT WITH MINOR MODIFICATIONS
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Allergy(null));

@@ -29,8 +29,8 @@ public class NameTest {
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains invalid special character
-// @@author uylulu-reused
-// Test added with chatgpt
+        // @@author uylulu-reused
+        // Test added with chatgpt
         assertFalse(Name.isValidName("12345")); // numbers only
         assertFalse(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertFalse(Name.isValidName("John@Doe")); // contains @
@@ -39,14 +39,14 @@ public class NameTest {
         assertFalse(Name.isValidName("李华")); // non-English characters
         assertFalse(Name.isValidName("François-Marie")); // accented characters
         assertFalse(Name.isValidName("Peter$")); // contains $
-// @@author
+        // @@author
 
         // valid names — English-only, with allowed symbols
         assertTrue(Name.isValidName("peter jack")); // alphabets only
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr II")); // long names
-// @@author uylulu-reused
-// Test added with chatgpt
+        // @@author uylulu-reused
+        // Test added with chatgpt
         // new valid cases (expanded rule coverage)
         assertTrue(Name.isValidName("Mary-Kate O'Neill")); // hyphen and apostrophe
         assertTrue(Name.isValidName("Jean-Luc Picard")); // hyphen
@@ -57,7 +57,7 @@ public class NameTest {
         assertTrue(Name.isValidName("Alice Pauline d/o Paulines Mom")); // slash
         assertTrue(Name.isValidName("Anita Devi w/o Rajesh Singh")); // slash
         assertTrue(Name.isValidName("Henry VIII")); // numeric suffix
-// @@author
+        // @@author
     }
 
     @Test

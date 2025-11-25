@@ -190,8 +190,8 @@ public class EditCommandTest {
                 + editPersonDescriptor + "}";
         assertEquals(expected, editCommand.toString());
     }
-// @@author uylulu-reused
-// Test was added with Github Copilot to ensure that a bug in PE-dry run was fixed.
+    // @@author uylulu-reused
+    // Test was added with Github Copilot to ensure that a bug in PE-dry run was fixed.
     @Test
     public void execute_editPreservesSubjectEnrollmentAndScore() {
         // Ensure clean subject state for this test
@@ -223,5 +223,5 @@ public class EditCommandTest {
         // Clean up subjects to avoid polluting other tests
         SubjectTestUtil.resetSubjects();
     }
-// @@author
+    // @@author
 }

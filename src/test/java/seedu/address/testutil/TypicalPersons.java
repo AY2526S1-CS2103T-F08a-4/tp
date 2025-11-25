@@ -136,7 +136,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_BOB)
             .withUniqueId(VALID_UNIQUE_ID_BOB)
             .build();
-//@@author
+    //@@author
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
