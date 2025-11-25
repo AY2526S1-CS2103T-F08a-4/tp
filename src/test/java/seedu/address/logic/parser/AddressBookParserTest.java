@@ -111,6 +111,8 @@ public class AddressBookParserTest {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 
+    //@@author wenn5055-reused
+    // Github copilot was assigned to generate tests for case insensitivity
     @Test
     public void parseCommand_caseInsensitive_list() throws Exception {
         assertTrue(parser.parseCommand("LIST") instanceof ListCommand);
@@ -138,4 +140,5 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand("Exit") instanceof ExitCommand);
         assertTrue(parser.parseCommand("ExIt") instanceof ExitCommand);
     }
+    //@@author
 }
