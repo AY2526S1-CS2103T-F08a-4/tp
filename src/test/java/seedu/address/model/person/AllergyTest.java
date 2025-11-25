@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-    // @@author uylulu-reused
-    // TESTS WRITTEN WITH THE HELP OF COPILOT WITH MINOR MODIFICATIONS
+// @@author uylulu-reused
+// TESTS WRITTEN WITH THE HELP OF COPILOT WITH MINOR MODIFICATIONS
 public class AllergyTest {
 
     // Valid examples
